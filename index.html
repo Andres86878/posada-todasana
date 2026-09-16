@@ -1,0 +1,578 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Posada Todasana | Exclusividad y Confort</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Montserrat:wght@200;300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    
+    <style>
+        /* --- VARIABLES DE LUJO --- */
+        :root {
+            --fondo-oscuro: #0A1916; 
+            --fondo-claro: #FBFBF9; 
+            --oro-puro: #C5A880; 
+            --oro-brillante: #E2C792;
+            --texto-claro: #FFFFFF;
+            --texto-oscuro: #1A1A1A;
+            --texto-gris: #666666;
+            --fuente-lujo: 'Playfair Display', serif;
+            --fuente-moderna: 'Montserrat', sans-serif;
+        }
+
+        /* --- RESET Y BASE --- */
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        html, body {
+            width: 100%;
+            max-width: 100vw;
+            overflow-x: hidden; 
+            scroll-behavior: smooth;
+        }
+        body { 
+            font-family: var(--fuente-moderna); 
+            color: var(--texto-oscuro); 
+            background-color: var(--fondo-claro);
+            line-height: 1.7;
+        }
+        
+        .no-scroll { overflow-y: hidden; height: 100vh; }
+
+        /* --- PANTALLA DE CARGA (PRELOADER SÚPER RÁPIDO) --- */
+        #preloader {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background-color: var(--fondo-oscuro); z-index: 999999;
+            display: flex; flex-direction: column; justify-content: center; align-items: center;
+            transition: opacity 0.5s ease, visibility 0.5s;
+        }
+        .loader-logo {
+            font-family: var(--fuente-lujo); font-size: 4rem; color: var(--oro-puro);
+            border: 2px solid var(--oro-puro); padding: 10px 25px; letter-spacing: 4px;
+            animation: pulse 1s infinite;
+        }
+        .loader-texto {
+            margin-top: 30px; color: var(--texto-claro); font-size: 0.85rem;
+            letter-spacing: 5px; text-transform: uppercase; font-weight: 300;
+        }
+        @keyframes pulse {
+            0% { box-shadow: 0 0 0 0 rgba(197, 168, 128, 0.5); }
+            70% { box-shadow: 0 0 0 25px rgba(197, 168, 128, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(197, 168, 128, 0); }
+        }
+
+        /* --- HEADER Y MENÚ MÓVIL DE LUJO --- */
+        header { 
+            position: fixed; width: 100%; top: 0; z-index: 9999; 
+            background: rgba(10, 25, 22, 0.95); backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255,255,255,0.05); padding: 15px 0; transition: all 0.4s ease;
+        }
+        .nav-container { 
+            width: 100%; max-width: 1400px; margin: 0 auto; padding: 0 5%; 
+            display: flex; justify-content: space-between; align-items: center; 
+        }
+        .brand { display: flex; align-items: center; gap: 15px; text-decoration: none; z-index: 10000; position: relative;}
+        .logo-letras {
+            font-family: var(--fuente-lujo); font-size: clamp(1.2rem, 3vw, 1.6rem);
+            color: var(--oro-puro); border: 1px solid var(--oro-puro); padding: 5px 12px; transition: 0.4s;
+        }
+        .brand:hover .logo-letras { background: var(--oro-puro); color: var(--fondo-oscuro); }
+        .brand-text { color: var(--texto-claro); font-size: 0.75rem; letter-spacing: 4px; text-transform: uppercase; font-weight: 300;}
+
+        .nav-links { list-style: none; display: flex; gap: 25px; margin: 0; align-items: center; }
+        .nav-links li a { 
+            font-size: 0.75rem; font-weight: 500; text-transform: uppercase;
+            letter-spacing: 2px; color: var(--texto-claro); text-decoration: none; transition: color 0.3s;
+        }
+        .nav-links li a:hover { color: var(--oro-puro); }
+        
+        .btn-menu-reserva {
+            background-color: var(--oro-puro); color: var(--fondo-oscuro) !important;
+            padding: 10px 18px; font-weight: 700 !important; border-radius: 3px; transition: 0.3s;
+        }
+        .btn-menu-reserva:hover { background-color: var(--texto-claro); transform: translateY(-2px); }
+
+        /* Botón Hamburguesa Móvil */
+        .menu-toggle {
+            display: none; color: var(--oro-puro); font-size: 1.8rem; cursor: pointer; z-index: 10000; position: relative;
+        }
+
+        /* --- HERO --- */
+        #inicio {
+            min-height: 100vh; width: 100%;
+            background: linear-gradient(rgba(10, 25, 22, 0.7), rgba(10, 25, 22, 0.4)), 
+                        url('https://images.unsplash.com/photo-1540541338287-41700207dee6?auto=format&fit=crop&w=1920&q=80') center/cover fixed;
+            display: flex; flex-direction: column; justify-content: center; align-items: center;
+            text-align: center; padding: 80px 5% 0; position: relative;
+        }
+        
+        .sello-exclusividad {
+            border: 1px solid var(--oro-puro); color: var(--oro-puro); padding: 10px 25px;
+            font-size: 0.8rem; text-transform: uppercase; letter-spacing: 3px; border-radius: 50px;
+            margin-bottom: 30px; backdrop-filter: blur(5px); background: rgba(197, 168, 128, 0.1);
+        }
+        
+        .hero-titulo { 
+            font-family: var(--fuente-lujo); font-size: clamp(2.8rem, 8vw, 6rem);
+            color: var(--texto-claro); margin-bottom: 20px; line-height: 1.1; font-weight: 400;
+        }
+        .hero-subtitulo {
+            color: var(--texto-claro); font-size: clamp(0.9rem, 3vw, 1.2rem);
+            font-weight: 300; max-width: 700px; margin-bottom: 40px; letter-spacing: 1px; line-height: 1.8; padding: 0 10px;
+        }
+
+        .hero-botones { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; width: 100%; max-width: 600px;}
+        
+        .btn-reservar {
+            flex: 1; min-width: 200px; display: inline-block; background-color: var(--oro-puro); color: var(--fondo-oscuro);
+            padding: 16px 30px; text-transform: uppercase; letter-spacing: 2px;
+            font-size: 0.9rem; font-weight: 700; text-decoration: none; transition: all 0.4s ease;
+            box-shadow: 0 10px 25px rgba(197, 168, 128, 0.3); border-radius: 3px; border: 2px solid var(--oro-puro);
+        }
+        .btn-reservar:hover { background-color: var(--texto-claro); border-color: var(--texto-claro); transform: translateY(-5px); box-shadow: 0 15px 30px rgba(255,255,255,0.2); }
+
+        .btn-outline {
+            flex: 1; min-width: 200px; display: inline-block; background-color: transparent; color: var(--texto-claro);
+            padding: 16px 30px; text-transform: uppercase; letter-spacing: 2px;
+            font-size: 0.9rem; font-weight: 600; text-decoration: none; transition: all 0.4s ease;
+            border-radius: 3px; border: 2px solid var(--oro-puro);
+        }
+        .btn-outline:hover { background-color: var(--oro-puro); color: var(--fondo-oscuro); transform: translateY(-5px); box-shadow: 0 15px 30px rgba(197, 168, 128, 0.2); }
+
+        /* --- SECCIONES BASE --- */
+        .seccion { padding: 100px 5%; width: 100%; max-width: 1400px; margin: 0 auto; }
+        .titulo-seccion { font-family: var(--fuente-lujo); font-size: clamp(2.2rem, 5vw, 3.5rem); text-align: center; color: var(--fondo-oscuro); margin-bottom: 20px; }
+        .linea-oro { width: 60px; height: 3px; background-color: var(--oro-puro); margin: 0 auto 70px; }
+
+        /* --- ALOJAMIENTO --- */
+        .alojamiento-container { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 50px; align-items: center; margin-bottom: 60px;}
+        .alojamiento-img { overflow: hidden; border-radius: 4px; box-shadow: 0 20px 40px rgba(0,0,0,0.15); }
+        .alojamiento-img img { width: 100%; height: auto; max-height: 500px; object-fit: cover; transition: transform 0.8s ease; display: block; }
+        .alojamiento-img:hover img { transform: scale(1.08); }
+        
+        .alojamiento-info h3 { font-family: var(--fuente-lujo); font-size: clamp(1.8rem, 4vw, 2.5rem); color: var(--fondo-oscuro); margin-bottom: 20px; }
+        .alojamiento-info p { margin-bottom: 30px; font-size: 1rem; color: var(--texto-gris); }
+        
+        .amenities-lista { list-style: none; display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
+        .amenities-lista li { display: flex; align-items: center; gap: 12px; font-size: 0.85rem; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; color: var(--fondo-oscuro);}
+        .amenities-lista i { color: var(--oro-puro); font-size: 1.2rem; }
+
+        /* --- TARIFAS --- */
+        .pricing-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; }
+        
+        .price-card {
+            display: block; text-decoration: none; color: var(--texto-oscuro);
+            background: #FFFFFF; border: 1px solid #EAEAEA; padding: 40px 20px;
+            text-align: center; position: relative; transition: all 0.4s ease;
+            cursor: pointer; border-radius: 4px;
+        }
+        .price-card::before {
+            content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 4px;
+            background-color: var(--fondo-oscuro); transition: 0.4s; border-radius: 4px 4px 0 0;
+        }
+        .price-card:hover { transform: translateY(-10px); box-shadow: 0 20px 40px rgba(0,0,0,0.08); border-color: var(--oro-puro); }
+        .price-card:hover::before { background-color: var(--oro-puro); }
+        
+        .price-title { font-size: 0.9rem; text-transform: uppercase; letter-spacing: 2px; color: var(--texto-gris); margin-bottom: 15px; font-weight: 600;}
+        .price-amount { font-family: var(--fuente-lujo); font-size: 4rem; color: var(--fondo-oscuro); line-height: 1; margin-bottom: 10px; }
+        .price-amount span { font-size: 1.8rem; vertical-align: super; }
+        .price-desc { font-size: 0.85rem; color: var(--texto-gris); font-weight: 500; }
+        
+        .price-card.featured { background-color: var(--fondo-oscuro); color: var(--texto-claro); transform: scale(1.05); box-shadow: 0 20px 40px rgba(10,25,22,0.2); }
+        .price-card.featured::before { background-color: var(--oro-puro); }
+        .price-card.featured .price-title { color: var(--oro-puro); }
+        .price-card.featured .price-amount { color: var(--texto-claro); }
+        .price-card.featured .price-desc { color: rgba(255,255,255,0.7); }
+        .price-card.featured:hover { transform: scale(1.05) translateY(-10px); }
+
+        .click-hint { font-size: 0.7rem; text-transform: uppercase; letter-spacing: 1px; font-weight: 700; color: var(--oro-puro); opacity: 0; transition: 0.3s; margin-top: 15px;}
+        .price-card:hover .click-hint { opacity: 1; }
+
+        /* --- INSTALACIONES --- */
+        .seccion-oscura { background-color: var(--fondo-oscuro); color: var(--texto-claro); padding: 100px 5%; width: 100%; max-width: 100vw; }
+        .seccion-oscura .titulo-seccion { color: var(--texto-claro); }
+        
+        .grid-instalaciones { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 30px; max-width: 1300px; margin: 0 auto 60px; }
+        .card-instalacion { text-align: center; padding: 40px 20px; border-radius: 4px; border: 1px solid rgba(255,255,255,0.05); transition: all 0.4s; }
+        .card-instalacion:hover { background-color: rgba(255,255,255,0.03); border-color: var(--oro-puro); transform: translateY(-5px); }
+        .card-instalacion i { font-size: 2.5rem; color: var(--oro-puro); margin-bottom: 20px; }
+        .card-instalacion h4 { font-family: var(--fuente-lujo); font-size: 1.4rem; margin-bottom: 10px; font-weight: 400;}
+        .card-instalacion p { font-size: 0.9rem; color: rgba(255,255,255,0.7); }
+
+        .banner-desconexion {
+            background: linear-gradient(135deg, var(--oro-puro) 0%, #8B6508 100%);
+            color: var(--fondo-oscuro); padding: 40px 20px; text-align: center; border-radius: 4px;
+            max-width: 1000px; margin: 0 auto; box-shadow: 0 20px 40px rgba(197, 168, 128, 0.2); position: relative; overflow: hidden;
+        }
+        .banner-desconexion::after {
+            content: ''; position: absolute; top: 0; left: -100%; width: 50%; height: 100%;
+            background: linear-gradient(to right, rgba(255,255,255,0) 0%, rgba(255,255,255,0.2) 50%, rgba(255,255,255,0) 100%);
+            transform: skewX(-25deg); animation: brillo 6s infinite;
+        }
+        @keyframes brillo { 0% { left: -100%; } 20% { left: 200%; } 100% { left: 200%; } }
+        
+        .banner-desconexion h3 { font-family: var(--fuente-lujo); font-size: clamp(1.5rem, 4vw, 2.2rem); margin-bottom: 10px; font-weight: 700;}
+        .banner-desconexion p { font-weight: 500; font-size: clamp(0.95rem, 2vw, 1.1rem); max-width: 800px; margin: 0 auto; line-height: 1.6; }
+
+        /* --- ENTORNO --- */
+        .grid-entorno { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 25px; }
+        .item-entorno {
+            background: #FFFFFF; padding: 25px 20px; display: flex; align-items: center; justify-content: space-between;
+            border-left: 4px solid var(--oro-puro); box-shadow: 0 10px 30px rgba(0,0,0,0.04); transition: 0.4s; border-radius: 4px;
+        }
+        .item-entorno:hover { transform: translateX(8px); box-shadow: 0 15px 40px rgba(0,0,0,0.1); }
+        .item-entorno h4 { font-family: var(--fuente-lujo); font-size: 1.3rem; color: var(--fondo-oscuro); font-weight: 600;}
+        .distancia { font-weight: 700; font-size: 0.8rem; color: var(--texto-gris); text-transform: uppercase; letter-spacing: 1px; display: flex; align-items: center; gap: 6px;}
+        .distancia i { color: var(--oro-puro); font-size: 1.1rem; }
+
+        /* --- POLÍTICAS --- */
+        .grid-politicas { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
+        .caja-politica { padding: 40px 30px; background: #FFFFFF; box-shadow: 0 15px 50px rgba(0,0,0,0.05); border: 1px solid #F0F0F0; border-top: 4px solid var(--fondo-oscuro); border-radius: 4px;}
+        .caja-politica h4 { font-family: var(--fuente-lujo); font-size: 1.8rem; color: var(--fondo-oscuro); margin-bottom: 25px; display: flex; align-items: center; gap: 15px;}
+        .caja-politica h4 i { color: var(--oro-puro); }
+        .caja-politica ul { list-style: none; }
+        .caja-politica li { margin-bottom: 15px; font-size: 0.95rem; color: var(--texto-gris); padding-left: 25px; position: relative; }
+        .caja-politica li::before { content: '♦'; color: var(--oro-puro); position: absolute; left: 0; top: 2px; font-size: 0.9rem; }
+        .resaltado { font-weight: 700; color: var(--fondo-oscuro); }
+
+        /* --- NUEVO CONTACTO 5 ESTRELLAS (MÁS ARRECHO) --- */
+        .seccion-contacto-premium {
+            position: relative;
+            padding: 150px 5%;
+            width: 100%;
+            max-width: 100vw;
+            background: linear-gradient(rgba(10, 25, 22, 0.85), rgba(10, 25, 22, 0.95)), 
+                        url('https://images.unsplash.com/photo-1499793983690-e29da59ef1c2?auto=format&fit=crop&w=1920&q=80') center/cover fixed;
+            display: flex; justify-content: center; align-items: center;
+        }
+        .contacto-card {
+            background: rgba(10, 25, 22, 0.6);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(197, 168, 128, 0.3);
+            padding: 80px 50px;
+            border-radius: 8px;
+            max-width: 900px; width: 100%;
+            text-align: center;
+            box-shadow: 0 30px 60px rgba(0,0,0,0.5);
+            position: relative;
+            overflow: hidden;
+        }
+        .contacto-card::before {
+            content: ''; position: absolute; top: 0; left: 50%; transform: translateX(-50%);
+            width: 150px; height: 3px; background: var(--oro-puro);
+        }
+        .contacto-card h2 {
+            font-family: var(--fuente-lujo); font-size: clamp(2.5rem, 5vw, 4rem);
+            color: var(--oro-puro); margin-bottom: 20px; line-height: 1.1;
+        }
+        .contacto-card p { color: rgba(255,255,255,0.8); font-size: 1.1rem; max-width: 600px; margin: 0 auto 50px; font-weight: 300;}
+        
+        .contact-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 40px; }
+        .contact-item { display: flex; flex-direction: column; align-items: center; gap: 15px;}
+        .contact-item i { font-size: 2.5rem; color: var(--oro-puro); transition: 0.4s; }
+        .contact-item h5 { font-size: 0.8rem; text-transform: uppercase; letter-spacing: 3px; color: var(--texto-claro); font-weight: 600;}
+        .contact-item a {
+            font-family: var(--fuente-lujo); font-size: 1.6rem; color: var(--oro-puro);
+            text-decoration: none; transition: 0.3s;
+        }
+        .contact-item:hover i { transform: scale(1.2) translateY(-5px); color: var(--texto-claro); }
+        .contact-item:hover a { color: var(--texto-claro); }
+
+        /* --- FOOTER SIMPLIFICADO --- */
+        footer { background-color: #030605; color: var(--texto-claro); padding: 40px 5%; width: 100%; max-width: 100vw; text-align: center;}
+        .footer-logo { font-family: var(--fuente-lujo); font-size: 2rem; color: var(--oro-puro); margin-bottom: 10px; letter-spacing: 2px;}
+        .copyright { font-size: 0.75rem; color: rgba(255,255,255,0.4); letter-spacing: 2px; text-transform: uppercase; }
+
+        /* --- MAGIA RESPONSIVE (MÓVIL PERFECTO) --- */
+        @media (max-width: 900px) {
+            .price-card.featured { transform: scale(1); }
+            .price-card.featured:hover { transform: translateY(-10px); }
+            .contacto-card { padding: 50px 30px; }
+        }
+        @media (max-width: 768px) {
+            /* Transformación del Menú para Móvil */
+            .menu-toggle { display: block; }
+            .nav-links {
+                position: fixed; top: 0; right: -100%; height: 100vh; width: 100%;
+                background: rgba(10, 25, 22, 0.98); backdrop-filter: blur(15px);
+                flex-direction: column; justify-content: center; align-items: center; gap: 40px;
+                transition: 0.5s cubic-bezier(0.77, 0.2, 0.05, 1);
+            }
+            .nav-links.nav-active { right: 0; }
+            .nav-links li a { font-size: 1.2rem; }
+            .btn-menu-reserva { padding: 15px 30px; font-size: 1.2rem; }
+            
+            /* Ajustes Generales */
+            .seccion { padding: 80px 5%; }
+            .caja-politica { padding: 30px 20px; }
+            .hero-botones { flex-direction: column; width: 100%; padding: 0 10px;}
+            .btn-reservar, .btn-outline { width: 100%; }
+        }
+    </style>
+</head>
+<body class="no-scroll">
+
+    <div id="preloader">
+        <div class="loader-logo">PT</div>
+        <div class="loader-texto">Preparando su experiencia</div>
+    </div>
+
+    <header>
+        <div class="nav-container">
+            <a href="#inicio" class="brand">
+                <div class="logo-letras">PT</div>
+                <div class="brand-text">Todasana</div>
+            </a>
+            
+            <div class="menu-toggle" id="mobile-menu">
+                <i class="fas fa-bars"></i>
+            </div>
+
+            <ul class="nav-links" id="nav-links">
+                <li><a href="#inicio" class="nav-item">Inicio</a></li>
+                <li><a href="#alojamiento" class="nav-item">Alojamiento</a></li>
+                <li><a href="#tarifas" class="nav-item">Tarifas</a></li>
+                <li><a href="#instalaciones" class="nav-item">Instalaciones</a></li>
+                <li><a href="#politicas" class="nav-item">Políticas</a></li>
+                <li><a href="#contacto" class="nav-item">Contacto</a></li>
+                <li>
+                    <a href="https://wa.me/584242383367?text=Hola,%20deseo%20consultar%20disponibilidad%20para%20hacer%20una%20reserva%20en%20Posada%20Todasana." target="_blank" class="btn-menu-reserva nav-item">Reservar</a>
+                </li>
+            </ul>
+        </div>
+    </header>
+
+    <section id="inicio">
+        <div class="sello-exclusividad" data-aos="fade-down" data-aos-delay="500">
+            Capacidad Máxima: 16 Personas
+        </div>
+        <h1 class="hero-titulo" data-aos="fade-up" data-aos-delay="700">El Estándar<br>de la Costa</h1>
+        <p class="hero-subtitulo" data-aos="fade-up" data-aos-delay="900">Privacidad absoluta y atención al detalle. Reserve toda la posada para su grupo y viva la experiencia de Todasana al más alto nivel.</p>
+        
+        <div class="hero-botones" data-aos="zoom-in" data-aos-delay="1100">
+            <a href="https://wa.me/584242383367?text=Hola,%20deseo%20consultar%20disponibilidad%20para%20hacer%20una%20reserva%20en%20Posada%20Todasana." target="_blank" class="btn-reservar">Asegure su Fecha</a>
+            <a href="#politicas" class="btn-outline">Leer Políticas</a>
+        </div>
+    </section>
+
+    <section id="alojamiento" class="seccion">
+        <h2 class="titulo-seccion" data-aos="fade-up">El Alojamiento</h2>
+        <div class="linea-oro" data-aos="fade-up"></div>
+        
+        <div class="alojamiento-container">
+            <div class="alojamiento-img" data-aos="fade-right">
+                <img src="https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?auto=format&fit=crop&w=1200&q=80" alt="Suite Cuádruple">
+            </div>
+            
+            <div class="alojamiento-info" data-aos="fade-left">
+                <h3>Suites Cuádruples</h3>
+                <p>Nuestras habitaciones han sido acondicionadas bajo un estricto concepto de pulcritud y confort. Diseñadas para recargar energías tras un día de expedición, cuentan con el espacio ideal para garantizar el descanso de su grupo.</p>
+                
+                <ul class="amenities-lista">
+                    <li><i class="fas fa-bed"></i> 1 Cama Matrimonial</li>
+                    <li><i class="fas fa-layer-group"></i> 1 Cama Litera</li>
+                    <li><i class="fas fa-snowflake"></i> Aire Acondicionado</li>
+                    <li><i class="fas fa-tv"></i> TV por Cable</li>
+                    <li><i class="fas fa-shower"></i> Baño Privado</li>
+                    <li><i class="fas fa-check-double"></i> Lencería Incluida</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <section id="tarifas" class="seccion" style="padding-top: 0;">
+        <h2 class="titulo-seccion" data-aos="fade-up">Inversión por Noche</h2>
+        <div class="linea-oro" data-aos="fade-up"></div>
+        
+        <div class="pricing-grid">
+            <a href="https://wa.me/584242383367?text=Hola,%20me%20gustaría%20reservar%20en%20Ocupación%20Doble%20($30/noche).%20Quisiera%20conocer%20la%20disponibilidad%20de%20fechas,%20por%20favor." target="_blank" class="price-card" data-aos="fade-up" data-aos-delay="100">
+                <div class="price-title">Ocupación Doble</div>
+                <div class="price-amount"><span>$</span>30</div>
+                <div class="price-desc">Estadía para 2 Personas</div>
+                <div class="click-hint">Tocar para reservar</div>
+            </a>
+            
+            <a href="https://wa.me/584242383367?text=Hola,%20me%20gustaría%20reservar%20en%20Ocupación%20Cuádruple%20($45/noche).%20Quisiera%20conocer%20la%20disponibilidad%20de%20fechas,%20por%20favor." target="_blank" class="price-card featured" data-aos="fade-up" data-aos-delay="200">
+                <div class="price-title">Ocupación Cuádruple</div>
+                <div class="price-amount"><span>$</span>45</div>
+                <div class="price-desc" style="color: var(--oro-brillante); font-weight: 600;">Mejor Valor (4 Personas)</div>
+                <div class="click-hint">Tocar para reservar</div>
+            </a>
+
+            <a href="https://wa.me/584242383367?text=Hola,%20me%20gustaría%20reservar%20en%20Ocupación%20Triple%20($40/noche).%20Quisiera%20conocer%20la%20disponibilidad%20de%20fechas,%20por%20favor." target="_blank" class="price-card" data-aos="fade-up" data-aos-delay="300">
+                <div class="price-title">Ocupación Triple</div>
+                <div class="price-amount"><span>$</span>40</div>
+                <div class="price-desc">Estadía para 3 Personas</div>
+                <div class="click-hint">Tocar para reservar</div>
+            </a>
+        </div>
+    </section>
+
+    <section id="instalaciones" class="seccion" style="background-color: var(--fondo-oscuro); color: var(--texto-claro); max-width: 100vw;">
+        <h2 class="titulo-seccion" style="color: var(--texto-claro);" data-aos="fade-up">Instalaciones Exclusivas</h2>
+        <div class="linea-oro" data-aos="fade-up"></div>
+        
+        <div class="grid-instalaciones" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 30px; max-width: 1300px; margin: 0 auto 60px;">
+            <div class="card-instalacion" style="text-align: center; padding: 40px 20px; border-radius: 4px; border: 1px solid rgba(255,255,255,0.05); transition: all 0.4s;" data-aos="zoom-in" data-aos-delay="100">
+                <i class="fas fa-fire-burner" style="font-size: 2.5rem; color: var(--oro-puro); margin-bottom: 20px;"></i>
+                <h4 style="font-family: var(--fuente-lujo); font-size: 1.4rem; margin-bottom: 10px; font-weight: 400;">Área de Parrilla</h4>
+                <p style="font-size: 0.9rem; color: rgba(255,255,255,0.7);">Asador de ladrillos listo para sus comidas al aire libre.</p>
+            </div>
+            <div class="card-instalacion" style="text-align: center; padding: 40px 20px; border-radius: 4px; border: 1px solid rgba(255,255,255,0.05); transition: all 0.4s;" data-aos="zoom-in" data-aos-delay="200">
+                <i class="fas fa-utensils" style="font-size: 2.5rem; color: var(--oro-puro); margin-bottom: 20px;"></i>
+                <h4 style="font-family: var(--fuente-lujo); font-size: 1.4rem; margin-bottom: 10px; font-weight: 400;">Cocina Abierta</h4>
+                <p style="font-size: 0.9rem; color: rgba(255,255,255,0.7);">Equipada con reverbero y lavaplatos en el patio central.</p>
+            </div>
+            <div class="card-instalacion" style="text-align: center; padding: 40px 20px; border-radius: 4px; border: 1px solid rgba(255,255,255,0.05); transition: all 0.4s;" data-aos="zoom-in" data-aos-delay="300">
+                <i class="fas fa-snowflake" style="font-size: 2.5rem; color: var(--oro-puro); margin-bottom: 20px;"></i>
+                <h4 style="font-family: var(--fuente-lujo); font-size: 1.4rem; margin-bottom: 10px; font-weight: 400;">Refrigeración</h4>
+                <p style="font-size: 0.9rem; color: rgba(255,255,255,0.7);">Nevera compartida para la conservación de sus alimentos.</p>
+            </div>
+            <div class="card-instalacion" style="text-align: center; padding: 40px 20px; border-radius: 4px; border: 1px solid rgba(255,255,255,0.05); transition: all 0.4s;" data-aos="zoom-in" data-aos-delay="400">
+                <i class="fas fa-car-side" style="font-size: 2.5rem; color: var(--oro-puro); margin-bottom: 20px;"></i>
+                <h4 style="font-family: var(--fuente-lujo); font-size: 1.4rem; margin-bottom: 10px; font-weight: 400;">Aparcamiento</h4>
+                <p style="font-size: 0.9rem; color: rgba(255,255,255,0.7);">Zona segura y con visibilidad directa desde sus habitaciones.</p>
+            </div>
+        </div>
+
+        <div class="banner-desconexion" style="background: linear-gradient(135deg, var(--oro-puro) 0%, #8B6508 100%); color: var(--fondo-oscuro); padding: 40px 20px; text-align: center; border-radius: 4px; max-width: 1000px; margin: 0 auto; box-shadow: 0 20px 40px rgba(197, 168, 128, 0.2); position: relative; overflow: hidden;" data-aos="fade-up" data-aos-delay="200">
+            <h3 style="font-family: var(--fuente-lujo); font-size: clamp(1.5rem, 4vw, 2.2rem); margin-bottom: 10px; font-weight: 700;">Filosofía de Desconexión</h3>
+            <p style="font-weight: 500; font-size: clamp(0.95rem, 2vw, 1.1rem); max-width: 800px; margin: 0 auto; line-height: 1.6;">Fomentamos el contacto real y la paz mental. <span style="font-weight: 800; color: #FFFFFF;">No contamos con Wi-Fi ni Piscina.</span> A cambio, la majestuosidad de la playa le espera a solo 5 minutos a pie. (Los datos móviles funcionan de manera óptima).</p>
+        </div>
+    </section>
+
+    <section id="entorno" class="seccion">
+        <h2 class="titulo-seccion" data-aos="fade-up">Explore el Litoral</h2>
+        <div class="linea-oro" data-aos="fade-up"></div>
+        
+        <div class="grid-entorno">
+            <div class="item-entorno" data-aos="fade-left" data-aos-delay="100">
+                <h4>Playa Todasana y Río</h4>
+                <div class="distancia"><i class="fas fa-walking"></i> 5 Min</div>
+            </div>
+            <div class="item-entorno" data-aos="fade-left" data-aos-delay="200">
+                <h4>Playa Larga</h4>
+                <div class="distancia"><i class="fas fa-car"></i> 8 Min</div>
+            </div>
+            <div class="item-entorno" data-aos="fade-left" data-aos-delay="300">
+                <h4>Playa Urama</h4>
+                <div class="distancia"><i class="fas fa-car"></i> 10 Min</div>
+            </div>
+            <div class="item-entorno" data-aos="fade-left" data-aos-delay="400">
+                <h4>Playa La Cueva</h4>
+                <div class="distancia"><i class="fas fa-truck-monster"></i> 12 Min</div>
+            </div>
+        </div>
+    </section>
+
+    <section id="politicas" class="seccion" style="background-color: #F5F5F5; max-width: 100vw;">
+        <h2 class="titulo-seccion" data-aos="fade-up">Términos de Servicio</h2>
+        <div class="linea-oro" data-aos="fade-up"></div>
+
+        <div class="grid-politicas" style="max-width: 1300px; margin: 0 auto;">
+            <div class="caja-politica" data-aos="fade-up" data-aos-delay="100">
+                <h4><i class="fas fa-concierge-bell"></i>Normas de Convivencia</h4>
+                <ul>
+                    <li><span class="resaltado">Check-in:</span> A partir de las 11:00 AM (sujeto a logística). <span class="resaltado">Check-out:</span> 12:00 PM.</li>
+                    <li>Para mantener la paz y exclusividad del lugar, <span class="resaltado">no se admiten mascotas ni visitantes externos.</span></li>
+                    <li>El consumo de alimentos y tabaco está restringido exclusivamente a las áreas del patio.</li>
+                    <li>El suministro de agua local no posee tratamiento de potabilidad. Sugerimos tomar previsiones.</li>
+                </ul>
+            </div>
+
+            <div class="caja-politica" data-aos="fade-up" data-aos-delay="200">
+                <h4><i class="fas fa-file-signature"></i>Políticas de Cancelación</h4>
+                <p style="margin-bottom: 20px; font-size: 0.95rem; color: #555;">Términos estrictos, de carácter obligatorio y sin excepciones:</p>
+                <ul>
+                    <li><span class="resaltado">Hasta 10 días previos:</span> Se aplicará un cargo de $20 USD por gestión.</li>
+                    <li><span class="resaltado">De 9 a 5 días previos:</span> Retención del monto correspondiente a la primera noche.</li>
+                    <li><span class="resaltado">3 días o menos (incluyendo No-Show):</span> Cobro del 50% de la estadía total sin derecho a reembolso.</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <section id="contacto" class="seccion-contacto-premium">
+        <div class="contacto-card" data-aos="zoom-in">
+            <h2>Atención Exclusiva</h2>
+            <p>Nuestro equipo de reservas está a su entera disposición. Permítanos asistirle en la planificación de su visita para asegurar que cada detalle sea impecable.</p>
+            
+            <div class="contact-grid">
+                <div class="contact-item">
+                    <i class="fab fa-whatsapp"></i>
+                    <h5>Reservaciones</h5>
+                    <a href="https://wa.me/584242383367?text=Hola,%20deseo%20consultar%20disponibilidad%20para%20Posada%20Todasana." target="_blank">0424 238 3367</a>
+                </div>
+                
+                <div class="contact-item">
+                    <i class="fas fa-concierge-bell"></i>
+                    <h5>Recepción</h5>
+                    <a href="https://wa.me/584143186753?text=Hola,%20quisiera%20más%20información%20sobre%20Posada%20Todasana." target="_blank">0414 318 6753</a>
+                </div>
+                
+                <div class="contact-item">
+                    <i class="fab fa-instagram"></i>
+                    <h5>Instagram</h5>
+                    <a href="https://instagram.com/posada_todasana" target="_blank">@posada_todasana</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-logo">PT</div>
+        <div class="copyright">
+            &copy; 2024 Posada Todasana. Todos los derechos reservados.
+        </div>
+    </footer>
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        // Forzar inicio arriba
+        if (history.scrollRestoration) { history.scrollRestoration = 'manual'; }
+        window.scrollTo(0, 0);
+
+        // Preloader Súper Rápido
+        window.addEventListener('load', function() {
+            setTimeout(function() {
+                const preloader = document.getElementById('preloader');
+                preloader.style.opacity = '0';
+                setTimeout(function() {
+                    preloader.style.visibility = 'hidden';
+                    document.body.classList.remove('no-scroll');
+                    AOS.init({ duration: 1000, once: true, offset: 50 });
+                }, 400); 
+            }, 500); 
+        });
+
+        // Script del Menú Móvil
+        const mobileMenu = document.getElementById('mobile-menu');
+        const navLinks = document.getElementById('nav-links');
+        const navItems = document.querySelectorAll('.nav-item');
+
+        mobileMenu.addEventListener('click', () => {
+            navLinks.classList.toggle('nav-active');
+            // Cambiar el icono de hamburguesa a X
+            if(navLinks.classList.contains('nav-active')){
+                mobileMenu.innerHTML = '<i class="fas fa-times"></i>';
+            } else {
+                mobileMenu.innerHTML = '<i class="fas fa-bars"></i>';
+            }
+        });
+
+        // Cerrar menú al tocar un enlace
+        navItems.forEach(item => {
+            item.addEventListener('click', () => {
+                navLinks.classList.remove('nav-active');
+                mobileMenu.innerHTML = '<i class="fas fa-bars"></i>';
+            });
+        });
+    </script>
+</body>
+</html>
