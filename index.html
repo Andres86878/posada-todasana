@@ -14,7 +14,6 @@
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     
     <style>
-        /* --- VARIABLES DE LUJO --- */
         :root {
             --fondo-oscuro: #0A1916; 
             --fondo-claro: #FBFBF9; 
@@ -27,7 +26,6 @@
             --fuente-moderna: 'Montserrat', sans-serif;
         }
 
-        /* --- RESET Y BASE --- */
         * { box-sizing: border-box; margin: 0; padding: 0; }
         html, body {
             width: 100%;
@@ -41,32 +39,143 @@
             background-color: var(--fondo-claro);
             line-height: 1.7;
         }
-        
-        .no-scroll { overflow-y: hidden; height: 100vh; }
 
-        /* --- PANTALLA DE CARGA (PRELOADER SÚPER RÁPIDO) --- */
+        /* =========================================
+           PANTALLA DE CARGA DE ALTA GAMA (NUEVA)
+           ========================================= */
         #preloader {
-            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background-color: var(--fondo-oscuro); z-index: 999999;
-            display: flex; flex-direction: column; justify-content: center; align-items: center;
-            transition: opacity 0.5s ease, visibility 0.5s;
-        }
-        .loader-logo {
-            font-family: var(--fuente-lujo); font-size: 4rem; color: var(--oro-puro);
-            border: 2px solid var(--oro-puro); padding: 10px 25px; letter-spacing: 4px;
-            animation: pulse 1s infinite;
-        }
-        .loader-texto {
-            margin-top: 30px; color: var(--texto-claro); font-size: 0.85rem;
-            letter-spacing: 5px; text-transform: uppercase; font-weight: 300;
-        }
-        @keyframes pulse {
-            0% { box-shadow: 0 0 0 0 rgba(197, 168, 128, 0.5); }
-            70% { box-shadow: 0 0 0 25px rgba(197, 168, 128, 0); }
-            100% { box-shadow: 0 0 0 0 rgba(197, 168, 128, 0); }
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at center, #122823 0%, #060D0B 100%);
+            z-index: 999999;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            transition: opacity 0.6s cubic-bezier(0.77, 0, 0.175, 1), visibility 0.6s;
         }
 
-        /* --- HEADER Y MENÚ MÓVIL DE LUJO --- */
+        .preloader-emblem {
+            position: relative;
+            width: 130px;
+            height: 130px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+
+        /* Anillo orbital brillante */
+        .orbital-ring {
+            position: absolute;
+            inset: 0;
+            border-radius: 50%;
+            border: 1px dashed rgba(197, 168, 128, 0.35);
+            animation: rotateRing 6s linear infinite;
+        }
+        .orbital-ring::before {
+            content: '';
+            position: absolute;
+            top: -4px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 8px;
+            height: 8px;
+            background: var(--oro-brillante);
+            border-radius: 50%;
+            box-shadow: 0 0 15px var(--oro-brillante), 0 0 25px var(--oro-puro);
+        }
+
+        /* Recuadro central */
+        .logo-center-box {
+            width: 85px;
+            height: 85px;
+            border: 1.5px solid var(--oro-puro);
+            background: rgba(10, 25, 22, 0.7);
+            backdrop-filter: blur(10px);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 0 0 30px rgba(197, 168, 128, 0.25), inset 0 0 15px rgba(197, 168, 128, 0.1);
+            animation: pulseBox 2s ease-in-out infinite;
+        }
+
+        .logo-center-box span {
+            font-family: var(--fuente-lujo);
+            font-size: 2.4rem;
+            color: var(--oro-brillante);
+            letter-spacing: 3px;
+            line-height: 1;
+        }
+
+        /* Tipografía con brillo metálico */
+        .preloader-brand-title {
+            font-family: var(--fuente-moderna);
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 8px;
+            color: rgba(255, 255, 255, 0.85);
+            font-weight: 500;
+            margin-bottom: 8px;
+            text-align: center;
+            background: linear-gradient(90deg, rgba(255,255,255,0.4) 0%, #FFFFFF 50%, rgba(255,255,255,0.4) 100%);
+            background-size: 200% auto;
+            color: transparent;
+            -webkit-background-clip: text;
+            animation: shineText 2.5s linear infinite;
+        }
+
+        .preloader-subtext {
+            font-family: var(--fuente-lujo);
+            font-style: italic;
+            font-size: 0.95rem;
+            color: var(--oro-puro);
+            letter-spacing: 2px;
+            margin-bottom: 30px;
+            opacity: 0.9;
+        }
+
+        /* Barra de progreso de lujo */
+        .progress-track {
+            width: 180px;
+            height: 2px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 2px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .progress-bar {
+            width: 0%;
+            height: 100%;
+            background: linear-gradient(90deg, var(--oro-puro), var(--oro-brillante));
+            box-shadow: 0 0 10px var(--oro-brillante);
+            animation: fillProgress 0.9s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+        }
+
+        @keyframes rotateRing {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+        @keyframes pulseBox {
+            0%, 100% { transform: scale(1); box-shadow: 0 0 20px rgba(197, 168, 128, 0.2); }
+            50% { transform: scale(1.03); box-shadow: 0 0 35px rgba(197, 168, 128, 0.45); }
+        }
+        @keyframes shineText {
+            to { background-position: 200% center; }
+        }
+        @keyframes fillProgress {
+            0% { width: 0%; }
+            60% { width: 75%; }
+            100% { width: 100%; }
+        }
+
+        /* =========================================
+           HEADER
+           ========================================= */
         header { 
             position: fixed; width: 100%; top: 0; z-index: 9999; 
             background: rgba(10, 25, 22, 0.95); backdrop-filter: blur(10px);
@@ -84,7 +193,7 @@
         .brand:hover .logo-letras { background: var(--oro-puro); color: var(--fondo-oscuro); }
         .brand-text { color: var(--texto-claro); font-size: 0.75rem; letter-spacing: 4px; text-transform: uppercase; font-weight: 300;}
 
-        .nav-links { list-style: none; display: flex; gap: 25px; margin: 0; align-items: center; }
+        .nav-links { list-style: none; display: flex; gap: 20px; margin: 0; align-items: center; }
         .nav-links li a { 
             font-size: 0.75rem; font-weight: 500; text-transform: uppercase;
             letter-spacing: 2px; color: var(--texto-claro); text-decoration: none; transition: color 0.3s;
@@ -95,18 +204,17 @@
             background-color: var(--oro-puro); color: var(--fondo-oscuro) !important;
             padding: 10px 18px; font-weight: 700 !important; border-radius: 3px; transition: 0.3s;
         }
-        .btn-menu-reserva:hover { background-color: var(--texto-claro); transform: translateY(-2px); }
+        .btn-menu-reserva:hover { background-color: var(--texto-claro); }
 
-        /* Botón Hamburguesa Móvil */
         .menu-toggle {
             display: none; color: var(--oro-puro); font-size: 1.8rem; cursor: pointer; z-index: 10000; position: relative;
         }
 
-        /* --- HERO --- */
+        /* HERO - COSTA NATURAL SIN PISCINA */
         #inicio {
             min-height: 100vh; width: 100%;
-            background: linear-gradient(rgba(10, 25, 22, 0.7), rgba(10, 25, 22, 0.4)), 
-                        url('https://images.unsplash.com/photo-1540541338287-41700207dee6?auto=format&fit=crop&w=1920&q=80') center/cover fixed;
+            background: linear-gradient(rgba(10, 25, 22, 0.65), rgba(10, 25, 22, 0.45)), 
+                        url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1920&q=80') center/cover fixed;
             display: flex; flex-direction: column; justify-content: center; align-items: center;
             text-align: center; padding: 80px 5% 0; position: relative;
         }
@@ -131,29 +239,28 @@
         .btn-reservar {
             flex: 1; min-width: 200px; display: inline-block; background-color: var(--oro-puro); color: var(--fondo-oscuro);
             padding: 16px 30px; text-transform: uppercase; letter-spacing: 2px;
-            font-size: 0.9rem; font-weight: 700; text-decoration: none; transition: all 0.4s ease;
+            font-size: 0.9rem; font-weight: 700; text-decoration: none; transition: all 0.3s ease;
             box-shadow: 0 10px 25px rgba(197, 168, 128, 0.3); border-radius: 3px; border: 2px solid var(--oro-puro);
         }
-        .btn-reservar:hover { background-color: var(--texto-claro); border-color: var(--texto-claro); transform: translateY(-5px); box-shadow: 0 15px 30px rgba(255,255,255,0.2); }
+        .btn-reservar:hover { background-color: var(--texto-claro); border-color: var(--texto-claro); }
 
         .btn-outline {
             flex: 1; min-width: 200px; display: inline-block; background-color: transparent; color: var(--texto-claro);
             padding: 16px 30px; text-transform: uppercase; letter-spacing: 2px;
-            font-size: 0.9rem; font-weight: 600; text-decoration: none; transition: all 0.4s ease;
+            font-size: 0.9rem; font-weight: 600; text-decoration: none; transition: all 0.3s ease;
             border-radius: 3px; border: 2px solid var(--oro-puro);
         }
-        .btn-outline:hover { background-color: var(--oro-puro); color: var(--fondo-oscuro); transform: translateY(-5px); box-shadow: 0 15px 30px rgba(197, 168, 128, 0.2); }
+        .btn-outline:hover { background-color: var(--oro-puro); color: var(--fondo-oscuro); }
 
-        /* --- SECCIONES BASE --- */
+        /* SECCIONES BASE */
         .seccion { padding: 100px 5%; width: 100%; max-width: 1400px; margin: 0 auto; }
         .titulo-seccion { font-family: var(--fuente-lujo); font-size: clamp(2.2rem, 5vw, 3.5rem); text-align: center; color: var(--fondo-oscuro); margin-bottom: 20px; }
         .linea-oro { width: 60px; height: 3px; background-color: var(--oro-puro); margin: 0 auto 70px; }
 
-        /* --- ALOJAMIENTO --- */
+        /* ALOJAMIENTO */
         .alojamiento-container { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 50px; align-items: center; margin-bottom: 60px;}
-        .alojamiento-img { overflow: hidden; border-radius: 4px; box-shadow: 0 20px 40px rgba(0,0,0,0.15); }
-        .alojamiento-img img { width: 100%; height: auto; max-height: 500px; object-fit: cover; transition: transform 0.8s ease; display: block; }
-        .alojamiento-img:hover img { transform: scale(1.08); }
+        .alojamiento-img { overflow: hidden; border-radius: 4px; box-shadow: 0 20px 40px rgba(0,0,0,0.15); width: 100%; }
+        .alojamiento-img img { width: 100%; height: auto; max-height: 500px; object-fit: cover; display: block; }
         
         .alojamiento-info h3 { font-family: var(--fuente-lujo); font-size: clamp(1.8rem, 4vw, 2.5rem); color: var(--fondo-oscuro); margin-bottom: 20px; }
         .alojamiento-info p { margin-bottom: 30px; font-size: 1rem; color: var(--texto-gris); }
@@ -162,20 +269,19 @@
         .amenities-lista li { display: flex; align-items: center; gap: 12px; font-size: 0.85rem; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; color: var(--fondo-oscuro);}
         .amenities-lista i { color: var(--oro-puro); font-size: 1.2rem; }
 
-        /* --- TARIFAS --- */
-        .pricing-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; }
-        
+        /* TARIFAS */
+        .pricing-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; margin-bottom: 50px;}
         .price-card {
             display: block; text-decoration: none; color: var(--texto-oscuro);
             background: #FFFFFF; border: 1px solid #EAEAEA; padding: 40px 20px;
-            text-align: center; position: relative; transition: all 0.4s ease;
+            text-align: center; position: relative; transition: all 0.3s ease;
             cursor: pointer; border-radius: 4px;
         }
         .price-card::before {
             content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 4px;
-            background-color: var(--fondo-oscuro); transition: 0.4s; border-radius: 4px 4px 0 0;
+            background-color: var(--fondo-oscuro); transition: 0.3s; border-radius: 4px 4px 0 0;
         }
-        .price-card:hover { transform: translateY(-10px); box-shadow: 0 20px 40px rgba(0,0,0,0.08); border-color: var(--oro-puro); }
+        .price-card:hover { transform: translateY(-8px); box-shadow: 0 20px 40px rgba(0,0,0,0.08); border-color: var(--oro-puro); }
         .price-card:hover::before { background-color: var(--oro-puro); }
         
         .price-title { font-size: 0.9rem; text-transform: uppercase; letter-spacing: 2px; color: var(--texto-gris); margin-bottom: 15px; font-weight: 600;}
@@ -183,23 +289,51 @@
         .price-amount span { font-size: 1.8rem; vertical-align: super; }
         .price-desc { font-size: 0.85rem; color: var(--texto-gris); font-weight: 500; }
         
-        .price-card.featured { background-color: var(--fondo-oscuro); color: var(--texto-claro); transform: scale(1.05); box-shadow: 0 20px 40px rgba(10,25,22,0.2); }
+        .price-card.featured { background-color: var(--fondo-oscuro); color: var(--texto-claro); transform: scale(1.03); box-shadow: 0 20px 40px rgba(10,25,22,0.2); }
         .price-card.featured::before { background-color: var(--oro-puro); }
         .price-card.featured .price-title { color: var(--oro-puro); }
         .price-card.featured .price-amount { color: var(--texto-claro); }
         .price-card.featured .price-desc { color: rgba(255,255,255,0.7); }
-        .price-card.featured:hover { transform: scale(1.05) translateY(-10px); }
 
-        .click-hint { font-size: 0.7rem; text-transform: uppercase; letter-spacing: 1px; font-weight: 700; color: var(--oro-puro); opacity: 0; transition: 0.3s; margin-top: 15px;}
-        .price-card:hover .click-hint { opacity: 1; }
+        .click-hint { font-size: 0.7rem; text-transform: uppercase; letter-spacing: 1px; font-weight: 700; color: var(--oro-puro); margin-top: 15px;}
 
-        /* --- INSTALACIONES --- */
+        /* CALCULADORA DE ESTADÍA */
+        .calculadora-box {
+            background: #FFFFFF; border: 1px solid rgba(197, 168, 128, 0.4); border-radius: 6px;
+            padding: 40px 30px; max-width: 800px; margin: 0 auto;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.05); text-align: center;
+        }
+        .calculadora-box h4 { font-family: var(--fuente-lujo); font-size: 1.8rem; color: var(--fondo-oscuro); margin-bottom: 10px; }
+        .calculadora-box p { font-size: 0.95rem; color: var(--texto-gris); margin-bottom: 30px; }
+        .calc-inputs { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; margin-bottom: 30px; }
+        .calc-field { flex: 1; min-width: 220px; text-align: left; }
+        .calc-field label { display: block; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 2px; font-weight: 600; color: var(--fondo-oscuro); margin-bottom: 8px;}
+        .calc-field select, .calc-field input {
+            width: 100%; padding: 14px 16px; border: 1px solid #DDD; border-radius: 4px;
+            font-family: var(--fuente-moderna); font-size: 0.95rem; background: var(--fondo-claro);
+            color: var(--texto-oscuro); outline: none; transition: border-color 0.3s;
+        }
+        .calc-field select:focus, .calc-field input:focus { border-color: var(--oro-puro); }
+        .calc-resultado {
+            padding: 20px; background: var(--fondo-oscuro); color: var(--texto-claro);
+            border-radius: 4px; display: flex; justify-content: space-between; align-items: center;
+            flex-wrap: wrap; gap: 15px; margin-bottom: 25px;
+        }
+        .calc-total-label { font-size: 0.85rem; text-transform: uppercase; letter-spacing: 2px; color: rgba(255,255,255,0.7); }
+        .calc-total-valor { font-family: var(--fuente-lujo); font-size: 2.2rem; color: var(--oro-puro); line-height: 1; }
+        .btn-calc-wa {
+            display: inline-flex; align-items: center; justify-content: center; gap: 10px;
+            background: var(--oro-puro); color: var(--fondo-oscuro); padding: 15px 35px;
+            font-size: 0.85rem; font-weight: 700; text-transform: uppercase; letter-spacing: 2px;
+            text-decoration: none; border-radius: 3px; transition: 0.3s; width: 100%; max-width: 380px;
+        }
+        .btn-calc-wa:hover { background: var(--texto-claro); }
+
+        /* INSTALACIONES */
         .seccion-oscura { background-color: var(--fondo-oscuro); color: var(--texto-claro); padding: 100px 5%; width: 100%; max-width: 100vw; }
         .seccion-oscura .titulo-seccion { color: var(--texto-claro); }
-        
         .grid-instalaciones { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 30px; max-width: 1300px; margin: 0 auto 60px; }
-        .card-instalacion { text-align: center; padding: 40px 20px; border-radius: 4px; border: 1px solid rgba(255,255,255,0.05); transition: all 0.4s; }
-        .card-instalacion:hover { background-color: rgba(255,255,255,0.03); border-color: var(--oro-puro); transform: translateY(-5px); }
+        .card-instalacion { text-align: center; padding: 40px 20px; border-radius: 4px; border: 1px solid rgba(255,255,255,0.05); background: rgba(255,255,255,0.02); }
         .card-instalacion i { font-size: 2.5rem; color: var(--oro-puro); margin-bottom: 20px; }
         .card-instalacion h4 { font-family: var(--fuente-lujo); font-size: 1.4rem; margin-bottom: 10px; font-weight: 400;}
         .card-instalacion p { font-size: 0.9rem; color: rgba(255,255,255,0.7); }
@@ -207,30 +341,30 @@
         .banner-desconexion {
             background: linear-gradient(135deg, var(--oro-puro) 0%, #8B6508 100%);
             color: var(--fondo-oscuro); padding: 40px 20px; text-align: center; border-radius: 4px;
-            max-width: 1000px; margin: 0 auto; box-shadow: 0 20px 40px rgba(197, 168, 128, 0.2); position: relative; overflow: hidden;
+            max-width: 1000px; margin: 0 auto; box-shadow: 0 20px 40px rgba(197, 168, 128, 0.2);
         }
-        .banner-desconexion::after {
-            content: ''; position: absolute; top: 0; left: -100%; width: 50%; height: 100%;
-            background: linear-gradient(to right, rgba(255,255,255,0) 0%, rgba(255,255,255,0.2) 50%, rgba(255,255,255,0) 100%);
-            transform: skewX(-25deg); animation: brillo 6s infinite;
-        }
-        @keyframes brillo { 0% { left: -100%; } 20% { left: 200%; } 100% { left: 200%; } }
-        
         .banner-desconexion h3 { font-family: var(--fuente-lujo); font-size: clamp(1.5rem, 4vw, 2.2rem); margin-bottom: 10px; font-weight: 700;}
         .banner-desconexion p { font-weight: 500; font-size: clamp(0.95rem, 2vw, 1.1rem); max-width: 800px; margin: 0 auto; line-height: 1.6; }
 
-        /* --- ENTORNO --- */
-        .grid-entorno { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 25px; }
+        /* ENTORNO Y RUTA */
+        .grid-entorno { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 25px; margin-bottom: 60px; }
         .item-entorno {
             background: #FFFFFF; padding: 25px 20px; display: flex; align-items: center; justify-content: space-between;
-            border-left: 4px solid var(--oro-puro); box-shadow: 0 10px 30px rgba(0,0,0,0.04); transition: 0.4s; border-radius: 4px;
+            border-left: 4px solid var(--oro-puro); box-shadow: 0 10px 30px rgba(0,0,0,0.04); border-radius: 4px;
         }
-        .item-entorno:hover { transform: translateX(8px); box-shadow: 0 15px 40px rgba(0,0,0,0.1); }
         .item-entorno h4 { font-family: var(--fuente-lujo); font-size: 1.3rem; color: var(--fondo-oscuro); font-weight: 600;}
         .distancia { font-weight: 700; font-size: 0.8rem; color: var(--texto-gris); text-transform: uppercase; letter-spacing: 1px; display: flex; align-items: center; gap: 6px;}
         .distancia i { color: var(--oro-puro); font-size: 1.1rem; }
 
-        /* --- POLÍTICAS --- */
+        .guia-ruta {
+            background: #FFFFFF; border-radius: 6px; padding: 40px 30px; box-shadow: 0 10px 30px rgba(0,0,0,0.04);
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px;
+        }
+        .ruta-card h5 { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 2px; color: var(--oro-puro); margin-bottom: 10px; font-weight: 700;}
+        .ruta-card h4 { font-family: var(--fuente-lujo); font-size: 1.4rem; color: var(--fondo-oscuro); margin-bottom: 10px;}
+        .ruta-card p { font-size: 0.9rem; color: var(--texto-gris); }
+
+        /* POLÍTICAS */
         .grid-politicas { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
         .caja-politica { padding: 40px 30px; background: #FFFFFF; box-shadow: 0 15px 50px rgba(0,0,0,0.05); border: 1px solid #F0F0F0; border-top: 4px solid var(--fondo-oscuro); border-radius: 4px;}
         .caja-politica h4 { font-family: var(--fuente-lujo); font-size: 1.8rem; color: var(--fondo-oscuro); margin-bottom: 25px; display: flex; align-items: center; gap: 15px;}
@@ -240,87 +374,114 @@
         .caja-politica li::before { content: '♦'; color: var(--oro-puro); position: absolute; left: 0; top: 2px; font-size: 0.9rem; }
         .resaltado { font-weight: 700; color: var(--fondo-oscuro); }
 
-        /* --- NUEVO CONTACTO 5 ESTRELLAS (MÁS ARRECHO) --- */
+        /* FAQ */
+        .faq-container { max-width: 850px; margin: 0 auto; }
+        .faq-item { background: #FFFFFF; border: 1px solid #EAEAEA; border-radius: 4px; margin-bottom: 15px; overflow: hidden; }
+        .faq-question {
+            padding: 22px 25px; cursor: pointer; display: flex; justify-content: space-between;
+            align-items: center; font-weight: 600; font-size: 1rem; color: var(--fondo-oscuro);
+        }
+        .faq-question i { color: var(--oro-puro); transition: transform 0.3s ease; }
+        .faq-answer {
+            max-height: 0; overflow: hidden; padding: 0 25px;
+            font-size: 0.95rem; color: var(--texto-gris); line-height: 1.7;
+            transition: max-height 0.3s ease, padding 0.3s ease;
+        }
+        .faq-item.active .faq-answer { max-height: 200px; padding-bottom: 22px; }
+        .faq-item.active .faq-question i { transform: rotate(180deg); }
+
+        /* CONTACTO - SOLUCIÓN BUG MÓVIL */
         .seccion-contacto-premium {
-            position: relative;
-            padding: 150px 5%;
-            width: 100%;
-            max-width: 100vw;
-            background: linear-gradient(rgba(10, 25, 22, 0.85), rgba(10, 25, 22, 0.95)), 
-                        url('https://images.unsplash.com/photo-1499793983690-e29da59ef1c2?auto=format&fit=crop&w=1920&q=80') center/cover fixed;
+            position: relative; padding: 140px 5%; width: 100%; max-width: 100vw;
+            background: linear-gradient(rgba(10, 25, 22, 0.88), rgba(10, 25, 22, 0.95)), 
+                        url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1920&q=80') center/cover fixed;
             display: flex; justify-content: center; align-items: center;
         }
         .contacto-card {
-            background: rgba(10, 25, 22, 0.6);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-            border: 1px solid rgba(197, 168, 128, 0.3);
-            padding: 80px 50px;
-            border-radius: 8px;
-            max-width: 900px; width: 100%;
-            text-align: center;
-            box-shadow: 0 30px 60px rgba(0,0,0,0.5);
+            background: rgba(10, 25, 22, 0.85);
+            border: 1px solid rgba(197, 168, 128, 0.3); padding: 70px 40px; border-radius: 8px;
+            max-width: 900px; width: 100%; text-align: center; box-shadow: 0 30px 60px rgba(0,0,0,0.5);
             position: relative;
-            overflow: hidden;
         }
         .contacto-card::before {
             content: ''; position: absolute; top: 0; left: 50%; transform: translateX(-50%);
-            width: 150px; height: 3px; background: var(--oro-puro);
+            width: 120px; height: 3px; background: var(--oro-puro);
         }
         .contacto-card h2 {
-            font-family: var(--fuente-lujo); font-size: clamp(2.5rem, 5vw, 4rem);
-            color: var(--oro-puro); margin-bottom: 20px; line-height: 1.1;
+            font-family: var(--fuente-lujo); font-size: clamp(2.3rem, 5vw, 3.5rem);
+            color: var(--oro-puro); margin-bottom: 15px; line-height: 1.1;
         }
-        .contacto-card p { color: rgba(255,255,255,0.8); font-size: 1.1rem; max-width: 600px; margin: 0 auto 50px; font-weight: 300;}
-        
-        .contact-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 40px; }
-        .contact-item { display: flex; flex-direction: column; align-items: center; gap: 15px;}
-        .contact-item i { font-size: 2.5rem; color: var(--oro-puro); transition: 0.4s; }
-        .contact-item h5 { font-size: 0.8rem; text-transform: uppercase; letter-spacing: 3px; color: var(--texto-claro); font-weight: 600;}
+        .contacto-card p { color: rgba(255,255,255,0.8); font-size: 1.05rem; max-width: 600px; margin: 0 auto 40px; font-weight: 300;}
+        .contact-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 35px; }
+        .contact-item { display: flex; flex-direction: column; align-items: center; gap: 12px;}
+        .contact-item i { font-size: 2.2rem; color: var(--oro-puro); }
+        .contact-item h5 { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 2px; color: var(--texto-claro); font-weight: 600;}
         .contact-item a {
-            font-family: var(--fuente-lujo); font-size: 1.6rem; color: var(--oro-puro);
+            font-family: var(--fuente-lujo); font-size: 1.5rem; color: var(--oro-puro);
             text-decoration: none; transition: 0.3s;
         }
-        .contact-item:hover i { transform: scale(1.2) translateY(-5px); color: var(--texto-claro); }
-        .contact-item:hover a { color: var(--texto-claro); }
 
-        /* --- FOOTER SIMPLIFICADO --- */
-        footer { background-color: #030605; color: var(--texto-claro); padding: 40px 5%; width: 100%; max-width: 100vw; text-align: center;}
-        .footer-logo { font-family: var(--fuente-lujo); font-size: 2rem; color: var(--oro-puro); margin-bottom: 10px; letter-spacing: 2px;}
+        /* BOTÓN FLOTANTE WHATSAPP */
+        .wa-float {
+            position: fixed; bottom: 30px; right: 30px; z-index: 9998;
+            background-color: #25D366; color: #FFF; width: 56px; height: 56px;
+            border-radius: 50%; display: flex; justify-content: center; align-items: center;
+            box-shadow: 0 10px 25px rgba(37, 211, 102, 0.4); text-decoration: none;
+            transition: transform 0.2s ease;
+        }
+        .wa-float i { font-size: 1.9rem; }
+        .wa-float:hover { transform: scale(1.08); color: #FFF; }
+
+        /* FOOTER */
+        footer { background-color: #030605; color: var(--texto-claro); padding: 35px 5%; width: 100%; max-width: 100vw; text-align: center;}
+        .footer-logo { font-family: var(--fuente-lujo); font-size: 1.8rem; color: var(--oro-puro); margin-bottom: 8px; letter-spacing: 2px;}
         .copyright { font-size: 0.75rem; color: rgba(255,255,255,0.4); letter-spacing: 2px; text-transform: uppercase; }
 
-        /* --- MAGIA RESPONSIVE (MÓVIL PERFECTO) --- */
-        @media (max-width: 900px) {
-            .price-card.featured { transform: scale(1); }
-            .price-card.featured:hover { transform: translateY(-10px); }
-            .contacto-card { padding: 50px 30px; }
-        }
-        @media (max-width: 768px) {
-            /* Transformación del Menú para Móvil */
+        /* COMPATIBILIDAD MÓVIL ESTABLE */
+        @media (max-width: 768px), (hover: none) {
+            #inicio, .seccion-contacto-premium {
+                background-attachment: scroll !important;
+                background-position: center center !important;
+            }
             .menu-toggle { display: block; }
             .nav-links {
                 position: fixed; top: 0; right: -100%; height: 100vh; width: 100%;
                 background: rgba(10, 25, 22, 0.98); backdrop-filter: blur(15px);
-                flex-direction: column; justify-content: center; align-items: center; gap: 40px;
-                transition: 0.5s cubic-bezier(0.77, 0.2, 0.05, 1);
+                flex-direction: column; justify-content: center; align-items: center; gap: 25px;
+                transition: 0.4s ease;
             }
             .nav-links.nav-active { right: 0; }
-            .nav-links li a { font-size: 1.2rem; }
-            .btn-menu-reserva { padding: 15px 30px; font-size: 1.2rem; }
+            .nav-links li a { font-size: 1.1rem; }
+            .btn-menu-reserva { padding: 12px 25px; font-size: 1.1rem; }
             
-            /* Ajustes Generales */
-            .seccion { padding: 80px 5%; }
+            .seccion { padding: 70px 5%; }
             .caja-politica { padding: 30px 20px; }
             .hero-botones { flex-direction: column; width: 100%; padding: 0 10px;}
             .btn-reservar, .btn-outline { width: 100%; }
+            .wa-float { bottom: 20px; right: 20px; width: 50px; height: 50px; }
+            .wa-float i { font-size: 1.6rem; }
+            .contacto-card { padding: 40px 20px; }
         }
     </style>
 </head>
-<body class="no-scroll">
+<body>
+
+    <a href="https://wa.me/584242383367?text=Hola,%20deseo%20consultar%20disponibilidad%20para%20hacer%20una%20reserva%20en%20Posada%20Todasana." target="_blank" class="wa-float" title="Reservar por WhatsApp">
+        <i class="fab fa-whatsapp"></i>
+    </a>
 
     <div id="preloader">
-        <div class="loader-logo">PT</div>
-        <div class="loader-texto">Preparando su experiencia</div>
+        <div class="preloader-emblem">
+            <div class="orbital-ring"></div>
+            <div class="logo-center-box">
+                <span>PT</span>
+            </div>
+        </div>
+        <div class="preloader-brand-title">Posada Todasana</div>
+        <div class="preloader-subtext">Refugio Costero Exclusivo</div>
+        <div class="progress-track">
+            <div class="progress-bar"></div>
+        </div>
     </div>
 
     <header>
@@ -339,7 +500,9 @@
                 <li><a href="#alojamiento" class="nav-item">Alojamiento</a></li>
                 <li><a href="#tarifas" class="nav-item">Tarifas</a></li>
                 <li><a href="#instalaciones" class="nav-item">Instalaciones</a></li>
+                <li><a href="#entorno" class="nav-item">Entorno</a></li>
                 <li><a href="#politicas" class="nav-item">Políticas</a></li>
+                <li><a href="#faq" class="nav-item">Dudas</a></li>
                 <li><a href="#contacto" class="nav-item">Contacto</a></li>
                 <li>
                     <a href="https://wa.me/584242383367?text=Hola,%20deseo%20consultar%20disponibilidad%20para%20hacer%20una%20reserva%20en%20Posada%20Todasana." target="_blank" class="btn-menu-reserva nav-item">Reservar</a>
@@ -349,13 +512,13 @@
     </header>
 
     <section id="inicio">
-        <div class="sello-exclusividad" data-aos="fade-down" data-aos-delay="500">
+        <div class="sello-exclusividad" data-aos="fade-down">
             Capacidad Máxima: 16 Personas
         </div>
-        <h1 class="hero-titulo" data-aos="fade-up" data-aos-delay="700">El Estándar<br>de la Costa</h1>
-        <p class="hero-subtitulo" data-aos="fade-up" data-aos-delay="900">Privacidad absoluta y atención al detalle. Reserve toda la posada para su grupo y viva la experiencia de Todasana al más alto nivel.</p>
+        <h1 class="hero-titulo" data-aos="fade-up">El Estándar<br>de la Costa</h1>
+        <p class="hero-subtitulo" data-aos="fade-up">Privacidad absoluta y atención al detalle. Reserve toda la posada para su grupo y viva la experiencia de Todasana al más alto nivel.</p>
         
-        <div class="hero-botones" data-aos="zoom-in" data-aos-delay="1100">
+        <div class="hero-botones" data-aos="zoom-in">
             <a href="https://wa.me/584242383367?text=Hola,%20deseo%20consultar%20disponibilidad%20para%20hacer%20una%20reserva%20en%20Posada%20Todasana." target="_blank" class="btn-reservar">Asegure su Fecha</a>
             <a href="#politicas" class="btn-outline">Leer Políticas</a>
         </div>
@@ -391,59 +554,91 @@
         <div class="linea-oro" data-aos="fade-up"></div>
         
         <div class="pricing-grid">
-            <a href="https://wa.me/584242383367?text=Hola,%20me%20gustaría%20reservar%20en%20Ocupación%20Doble%20($30/noche).%20Quisiera%20conocer%20la%20disponibilidad%20de%20fechas,%20por%20favor." target="_blank" class="price-card" data-aos="fade-up" data-aos-delay="100">
+            <a href="https://wa.me/584242383367?text=Hola,%20me%20gustar%C3%ADa%20reservar%20en%20Ocupaci%C3%B3n%20Doble%20($30/noche).%20Quisiera%20conocer%20la%20disponibilidad%20de%20fechas,%20por%20favor." target="_blank" class="price-card" data-aos="fade-up">
                 <div class="price-title">Ocupación Doble</div>
                 <div class="price-amount"><span>$</span>30</div>
                 <div class="price-desc">Estadía para 2 Personas</div>
                 <div class="click-hint">Tocar para reservar</div>
             </a>
             
-            <a href="https://wa.me/584242383367?text=Hola,%20me%20gustaría%20reservar%20en%20Ocupación%20Cuádruple%20($45/noche).%20Quisiera%20conocer%20la%20disponibilidad%20de%20fechas,%20por%20favor." target="_blank" class="price-card featured" data-aos="fade-up" data-aos-delay="200">
+            <a href="https://wa.me/584242383367?text=Hola,%20me%20gustar%C3%ADa%20reservar%20en%20Ocupaci%C3%B3n%20Cu%C3%A1druple%20($45/noche).%20Quisiera%20conocer%20la%20disponibilidad%20de%20fechas,%20por%20favor." target="_blank" class="price-card featured" data-aos="fade-up">
                 <div class="price-title">Ocupación Cuádruple</div>
                 <div class="price-amount"><span>$</span>45</div>
                 <div class="price-desc" style="color: var(--oro-brillante); font-weight: 600;">Mejor Valor (4 Personas)</div>
                 <div class="click-hint">Tocar para reservar</div>
             </a>
 
-            <a href="https://wa.me/584242383367?text=Hola,%20me%20gustaría%20reservar%20en%20Ocupación%20Triple%20($40/noche).%20Quisiera%20conocer%20la%20disponibilidad%20de%20fechas,%20por%20favor." target="_blank" class="price-card" data-aos="fade-up" data-aos-delay="300">
+            <a href="https://wa.me/584242383367?text=Hola,%20me%20gustar%C3%ADa%20reservar%20en%20Ocupaci%C3%B3n%20Triple%20($40/noche).%20Quisiera%20conocer%20la%20disponibilidad%20de%20fechas,%20por%20favor." target="_blank" class="price-card" data-aos="fade-up">
                 <div class="price-title">Ocupación Triple</div>
                 <div class="price-amount"><span>$</span>40</div>
                 <div class="price-desc">Estadía para 3 Personas</div>
                 <div class="click-hint">Tocar para reservar</div>
             </a>
         </div>
+
+        <div class="calculadora-box" data-aos="fade-up">
+            <h4>Calcule su Estadía</h4>
+            <p>Seleccione el tamaño de su grupo y la cantidad de noches para estimar su inversión:</p>
+            
+            <div class="calc-inputs">
+                <div class="calc-field">
+                    <label for="calc-personas">Huéspedes por Habitación</label>
+                    <select id="calc-personas" onchange="calcularEstadia()">
+                        <option value="30">2 Personas ($30/noche)</option>
+                        <option value="40">3 Personas ($40/noche)</option>
+                        <option value="45" selected>4 Personas ($45/noche)</option>
+                    </select>
+                </div>
+                <div class="calc-field">
+                    <label for="calc-noches">Cantidad de Noches</label>
+                    <input type="number" id="calc-noches" min="1" max="30" value="2" oninput="calcularEstadia()">
+                </div>
+            </div>
+
+            <div class="calc-resultado">
+                <div>
+                    <div class="calc-total-label">Inversión Estimada</div>
+                    <div style="font-size: 0.85rem; color: rgba(255,255,255,0.6);" id="calc-detalle">4 personas x 2 noches</div>
+                </div>
+                <div class="calc-total-valor" id="calc-total">$90 USD</div>
+            </div>
+
+            <a href="#" id="calc-btn-wa" target="_blank" class="btn-calc-wa">
+                <i class="fab fa-whatsapp"></i> Solicitar esta Reserva
+            </a>
+        </div>
     </section>
 
-    <section id="instalaciones" class="seccion" style="background-color: var(--fondo-oscuro); color: var(--texto-claro); max-width: 100vw;">
-        <h2 class="titulo-seccion" style="color: var(--texto-claro);" data-aos="fade-up">Instalaciones Exclusivas</h2>
+    <section id="instalaciones" class="seccion-oscura">
+        <h2 class="titulo-seccion" data-aos="fade-up">Instalaciones Exclusivas</h2>
         <div class="linea-oro" data-aos="fade-up"></div>
         
-        <div class="grid-instalaciones" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 30px; max-width: 1300px; margin: 0 auto 60px;">
-            <div class="card-instalacion" style="text-align: center; padding: 40px 20px; border-radius: 4px; border: 1px solid rgba(255,255,255,0.05); transition: all 0.4s;" data-aos="zoom-in" data-aos-delay="100">
-                <i class="fas fa-fire-burner" style="font-size: 2.5rem; color: var(--oro-puro); margin-bottom: 20px;"></i>
-                <h4 style="font-family: var(--fuente-lujo); font-size: 1.4rem; margin-bottom: 10px; font-weight: 400;">Área de Parrilla</h4>
-                <p style="font-size: 0.9rem; color: rgba(255,255,255,0.7);">Asador de ladrillos listo para sus comidas al aire libre.</p>
+        <div class="grid-instalaciones">
+            <div class="card-instalacion" data-aos="zoom-in">
+                <i class="fas fa-fire-burner"></i>
+                <h4>Área de Parrilla</h4>
+                <p>Asador de ladrillos tradicional listo para sus comidas al aire libre.</p>
             </div>
-            <div class="card-instalacion" style="text-align: center; padding: 40px 20px; border-radius: 4px; border: 1px solid rgba(255,255,255,0.05); transition: all 0.4s;" data-aos="zoom-in" data-aos-delay="200">
-                <i class="fas fa-utensils" style="font-size: 2.5rem; color: var(--oro-puro); margin-bottom: 20px;"></i>
-                <h4 style="font-family: var(--fuente-lujo); font-size: 1.4rem; margin-bottom: 10px; font-weight: 400;">Cocina Abierta</h4>
-                <p style="font-size: 0.9rem; color: rgba(255,255,255,0.7);">Equipada con reverbero y lavaplatos en el patio central.</p>
+            <div class="card-instalacion" data-aos="zoom-in">
+                <i class="fas fa-utensils"></i>
+                <h4>Cocina Abierta</h4>
+                <p>Equipada con reverbero y lavaplatos en el patio central.</p>
             </div>
-            <div class="card-instalacion" style="text-align: center; padding: 40px 20px; border-radius: 4px; border: 1px solid rgba(255,255,255,0.05); transition: all 0.4s;" data-aos="zoom-in" data-aos-delay="300">
-                <i class="fas fa-snowflake" style="font-size: 2.5rem; color: var(--oro-puro); margin-bottom: 20px;"></i>
-                <h4 style="font-family: var(--fuente-lujo); font-size: 1.4rem; margin-bottom: 10px; font-weight: 400;">Refrigeración</h4>
-                <p style="font-size: 0.9rem; color: rgba(255,255,255,0.7);">Nevera compartida para la conservación de sus alimentos.</p>
+            <div class="card-instalacion" data-aos="zoom-in">
+                <i class="fas fa-snowflake"></i>
+                <h4>Refrigeración</h4>
+                <p>Nevera compartida para la conservación de sus alimentos y bebidas.</p>
             </div>
-            <div class="card-instalacion" style="text-align: center; padding: 40px 20px; border-radius: 4px; border: 1px solid rgba(255,255,255,0.05); transition: all 0.4s;" data-aos="zoom-in" data-aos-delay="400">
-                <i class="fas fa-car-side" style="font-size: 2.5rem; color: var(--oro-puro); margin-bottom: 20px;"></i>
-                <h4 style="font-family: var(--fuente-lujo); font-size: 1.4rem; margin-bottom: 10px; font-weight: 400;">Aparcamiento</h4>
-                <p style="font-size: 0.9rem; color: rgba(255,255,255,0.7);">Zona segura y con visibilidad directa desde sus habitaciones.</p>
+            <div class="card-instalacion" data-aos="zoom-in">
+                <i class="fas fa-car-side"></i>
+                <h4>Aparcamiento</h4>
+                <p>Zona segura y con visibilidad directa desde sus habitaciones.</p>
             </div>
         </div>
 
-        <div class="banner-desconexion" style="background: linear-gradient(135deg, var(--oro-puro) 0%, #8B6508 100%); color: var(--fondo-oscuro); padding: 40px 20px; text-align: center; border-radius: 4px; max-width: 1000px; margin: 0 auto; box-shadow: 0 20px 40px rgba(197, 168, 128, 0.2); position: relative; overflow: hidden;" data-aos="fade-up" data-aos-delay="200">
-            <h3 style="font-family: var(--fuente-lujo); font-size: clamp(1.5rem, 4vw, 2.2rem); margin-bottom: 10px; font-weight: 700;">Filosofía de Desconexión</h3>
-            <p style="font-weight: 500; font-size: clamp(0.95rem, 2vw, 1.1rem); max-width: 800px; margin: 0 auto; line-height: 1.6;">Fomentamos el contacto real y la paz mental. <span style="font-weight: 800; color: #FFFFFF;">No contamos con Wi-Fi ni Piscina.</span> A cambio, la majestuosidad de la playa le espera a solo 5 minutos a pie. (Los datos móviles funcionan de manera óptima).</p>
+        <div class="banner-desconexion" data-aos="fade-up">
+            <h3>Filosofía de Desconexión</h3>
+            <p>Fomentamos el contacto real y la paz mental. <span style="font-weight: 800; color: #FFFFFF;">No contamos con Wi-Fi ni Piscina.</span> A cambio, la majestuosidad de la playa le espera a solo 5 minutos a pie. (Los datos móviles funcionan de manera óptima en nuestras instalaciones).</p>
         </div>
     </section>
 
@@ -452,21 +647,39 @@
         <div class="linea-oro" data-aos="fade-up"></div>
         
         <div class="grid-entorno">
-            <div class="item-entorno" data-aos="fade-left" data-aos-delay="100">
+            <div class="item-entorno" data-aos="fade-left">
                 <h4>Playa Todasana y Río</h4>
                 <div class="distancia"><i class="fas fa-walking"></i> 5 Min</div>
             </div>
-            <div class="item-entorno" data-aos="fade-left" data-aos-delay="200">
+            <div class="item-entorno" data-aos="fade-left">
                 <h4>Playa Larga</h4>
                 <div class="distancia"><i class="fas fa-car"></i> 8 Min</div>
             </div>
-            <div class="item-entorno" data-aos="fade-left" data-aos-delay="300">
+            <div class="item-entorno" data-aos="fade-left">
                 <h4>Playa Urama</h4>
                 <div class="distancia"><i class="fas fa-car"></i> 10 Min</div>
             </div>
-            <div class="item-entorno" data-aos="fade-left" data-aos-delay="400">
+            <div class="item-entorno" data-aos="fade-left">
                 <h4>Playa La Cueva</h4>
                 <div class="distancia"><i class="fas fa-truck-monster"></i> 12 Min</div>
+            </div>
+        </div>
+
+        <div class="guia-ruta" data-aos="fade-up">
+            <div class="ruta-card">
+                <h5>Punto de Partida</h5>
+                <h4>Desde Caracas</h4>
+                <p>Aproximadamente 2h a 2h30m de recorrido bajando por la autopista Caracas-La Guaira y continuando por la costa vía Naiguatá y Los Caracas.</p>
+            </div>
+            <div class="ruta-card">
+                <h5>Acceso Vial</h5>
+                <h4>Tipo de Vehículo</h4>
+                <p>La carretera principal hasta Todasana está pavimentada. Se puede llegar en vehículo sedán convencional sin inconvenientes.</p>
+            </div>
+            <div class="ruta-card">
+                <h5>Llegada a la Posada</h5>
+                <h4>Estacionamiento Directo</h4>
+                <p>El vehículo se aparca directamente en la entrada de la casa, manteniendo contacto visual inmediato desde su estancia.</p>
             </div>
         </div>
     </section>
@@ -476,7 +689,7 @@
         <div class="linea-oro" data-aos="fade-up"></div>
 
         <div class="grid-politicas" style="max-width: 1300px; margin: 0 auto;">
-            <div class="caja-politica" data-aos="fade-up" data-aos-delay="100">
+            <div class="caja-politica" data-aos="fade-up">
                 <h4><i class="fas fa-concierge-bell"></i>Normas de Convivencia</h4>
                 <ul>
                     <li><span class="resaltado">Check-in:</span> A partir de las 11:00 AM (sujeto a logística). <span class="resaltado">Check-out:</span> 12:00 PM.</li>
@@ -486,7 +699,7 @@
                 </ul>
             </div>
 
-            <div class="caja-politica" data-aos="fade-up" data-aos-delay="200">
+            <div class="caja-politica" data-aos="fade-up">
                 <h4><i class="fas fa-file-signature"></i>Políticas de Cancelación</h4>
                 <p style="margin-bottom: 20px; font-size: 0.95rem; color: #555;">Términos estrictos, de carácter obligatorio y sin excepciones:</p>
                 <ul>
@@ -494,6 +707,53 @@
                     <li><span class="resaltado">De 9 a 5 días previos:</span> Retención del monto correspondiente a la primera noche.</li>
                     <li><span class="resaltado">3 días o menos (incluyendo No-Show):</span> Cobro del 50% de la estadía total sin derecho a reembolso.</li>
                 </ul>
+            </div>
+        </div>
+    </section>
+
+    <section id="faq" class="seccion">
+        <h2 class="titulo-seccion" data-aos="fade-up">Preguntas Frecuentes</h2>
+        <div class="linea-oro" data-aos="fade-up"></div>
+
+        <div class="faq-container" data-aos="fade-up">
+            <div class="faq-item">
+                <div class="faq-question">
+                    ¿Qué métodos de pago aceptan?
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">
+                    Aceptamos divisas en efectivo, transferencias bancarias nacionales y Pago Móvil. Para apartar fechas se requiere el pago anticipado correspondiente a la reserva.
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">
+                    ¿Hay cobertura de datos móviles en la posada?
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">
+                    Sí. Aunque no contamos con servicio de Wi-Fi para promover el descanso y la desconexión, la señal móvil de las principales operadoras nacionales funciona con regularidad en el pueblo y la casa.
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">
+                    ¿Se pueden llevar alimentos para cocinar?
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">
+                    Totalmente. Contamos con una cocina exterior en el patio equipada con reverbero, lavaplatos, nevera exclusiva para huéspedes y una parrillera de ladrillos lista para asados.
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">
+                    ¿Cuál es la distancia real a la playa?
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">
+                    La playa de Todasana y la desembocadura de su río se encuentran a solo 5 minutos caminando desde la puerta de la posada. No necesita mover su vehículo para disfrutar del mar.
+                </div>
             </div>
         </div>
     </section>
@@ -513,7 +773,7 @@
                 <div class="contact-item">
                     <i class="fas fa-concierge-bell"></i>
                     <h5>Recepción</h5>
-                    <a href="https://wa.me/584143186753?text=Hola,%20quisiera%20más%20información%20sobre%20Posada%20Todasana." target="_blank">0414 318 6753</a>
+                    <a href="https://wa.me/584143186753?text=Hola,%20quisiera%20m%C3%A1s%20informaci%C3%B3n%20sobre%20Posada%20Todasana." target="_blank">0414 318 6753</a>
                 </div>
                 
                 <div class="contact-item">
@@ -528,51 +788,73 @@
     <footer>
         <div class="footer-logo">PT</div>
         <div class="copyright">
-            &copy; 2024 Posada Todasana. Todos los derechos reservados.
+            &copy; 2026 Posada Todasana. Todos los derechos reservados.
         </div>
     </footer>
 
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
-        // Forzar inicio arriba
         if (history.scrollRestoration) { history.scrollRestoration = 'manual'; }
         window.scrollTo(0, 0);
 
-        // Preloader Súper Rápido
+        // Desvanecimiento del Preloader tras la animación de la barra
         window.addEventListener('load', function() {
             setTimeout(function() {
                 const preloader = document.getElementById('preloader');
                 preloader.style.opacity = '0';
                 setTimeout(function() {
                     preloader.style.visibility = 'hidden';
-                    document.body.classList.remove('no-scroll');
-                    AOS.init({ duration: 1000, once: true, offset: 50 });
-                }, 400); 
-            }, 500); 
+                    AOS.init({ duration: 800, once: true, offset: 40 });
+                }, 600);
+            }, 950); // Tiempo exacto en que la barra de progreso dorada llega al 100%
         });
 
-        // Script del Menú Móvil
+        // Menú móvil
         const mobileMenu = document.getElementById('mobile-menu');
         const navLinks = document.getElementById('nav-links');
         const navItems = document.querySelectorAll('.nav-item');
 
         mobileMenu.addEventListener('click', () => {
             navLinks.classList.toggle('nav-active');
-            // Cambiar el icono de hamburguesa a X
-            if(navLinks.classList.contains('nav-active')){
-                mobileMenu.innerHTML = '<i class="fas fa-times"></i>';
-            } else {
-                mobileMenu.innerHTML = '<i class="fas fa-bars"></i>';
-            }
+            mobileMenu.innerHTML = navLinks.classList.contains('nav-active') 
+                ? '<i class="fas fa-times"></i>' 
+                : '<i class="fas fa-bars"></i>';
         });
 
-        // Cerrar menú al tocar un enlace
         navItems.forEach(item => {
             item.addEventListener('click', () => {
                 navLinks.classList.remove('nav-active');
                 mobileMenu.innerHTML = '<i class="fas fa-bars"></i>';
             });
         });
+
+        // FAQ
+        document.querySelectorAll('.faq-question').forEach(headerEl => {
+            headerEl.addEventListener('click', () => {
+                const item = headerEl.parentElement;
+                const isActive = item.classList.contains('active');
+                document.querySelectorAll('.faq-item').forEach(el => el.classList.remove('active'));
+                if (!isActive) { item.classList.add('active'); }
+            });
+        });
+
+        // Calculadora
+        function calcularEstadia() {
+            const precioNoche = parseInt(document.getElementById('calc-personas').value);
+            let noches = parseInt(document.getElementById('calc-noches').value);
+            if (isNaN(noches) || noches < 1) noches = 1;
+
+            const total = precioNoche * noches;
+            const selectEl = document.getElementById('calc-personas');
+            const textoPersonas = selectEl.options[selectEl.selectedIndex].text.split(' (')[0];
+
+            document.getElementById('calc-total').innerText = `$${total} USD`;
+            document.getElementById('calc-detalle').innerText = `${textoPersonas} x ${noches} noche(s)`;
+
+            const mensajeWa = `Hola, coticé en su web: ${textoPersonas} por ${noches} noche(s) (Total estimado: $${total} USD). ¿Tienen disponibilidad de fechas?`;
+            document.getElementById('calc-btn-wa').href = `https://wa.me/584242383367?text=${encodeURIComponent(mensajeWa)}`;
+        }
+        calcularEstadia();
     </script>
 </body>
 </html>
